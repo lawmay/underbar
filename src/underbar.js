@@ -54,7 +54,6 @@ var _ = {};
       }
     } else {                                          // if object
       var keys = Object.keys(collection);
-      console.log(keys);
       for (var i = 0; i < keys.length; i++) {
         iterator(collection[keys[i]], keys[i], collection);
       }
@@ -80,6 +79,13 @@ var _ = {};
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    var results = [];
+    for (var i = 0; i < collection.length; i++) {
+      if (test(collection[i])) {
+        results.push(collection[i]);
+      }
+    }
+    return results;
   };
 
   // Return all elements of an array that don't pass a truth test.
