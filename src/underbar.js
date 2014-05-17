@@ -207,6 +207,14 @@ var _ = {};
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    var tempReduce = _.reduce(collection, function(testPassed, item) {
+      if (testPassed) {
+        return true;
+      }
+      return (typeof iterator === 'function') ? iterator(item) : item;
+    }, false);
+
+    return !!tempReduce;
   };
 
 
