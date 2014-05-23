@@ -431,10 +431,14 @@ var _ = {};
   _.intersection = function() {
     var results = [];
     for (var i = 0; i < arguments[0].length; i++) {
+      var foundInAll = true;
       for (var h = 1; h < arguments.length; h++) {
-        if (arguments[h].indexOf(arguments[0][i]) > -1) {
-          results.push(arguments[0][i]);
+        if (arguments[h].indexOf(arguments[0][i]) < 0) {
+          foundInAll = false;
         }
+      }
+      if (foundInAll) {
+        results.push(arguments[0][i]);
       }
     }
     return results;
